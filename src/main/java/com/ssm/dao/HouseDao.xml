@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.HouseDao">
+	
+	<sql id="goodsColumn">
+	  area areA,houses houseS,price pricE
+	</sql>
+	
+	<resultMap type="com.ssm.entity.House" id="goodsBaseMap">
+	<id column="area" property="areA"/>
+	<result column="houses" property="houseS"/>
+	<result column="price" property="pricE"/>
+	</resultMap>
+		
+	<select id="selectAll" parameterType="com.ssm.entity.House" resultMap="goodsBaseMap">
+	select <include refid="goodsColumn"/> from house 
+	<where>
+	<if test='areA!="0"'>and area=#{areA}</if>
+	<if test='houseS!="0"'>and houses=#{houseS}</if>
+	<if test='pricE!="0"'>and price between #{pricE} and ${pricE}+1000</if>
+	</where>
+	</select> 
+	
+</mapper>
