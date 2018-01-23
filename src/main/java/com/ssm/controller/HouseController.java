@@ -22,6 +22,7 @@ public class HouseController {
 		resp.setContentType("application/json;charset=utf-8");
 		System.out.println(h + "1111");
 		ArrayList<House> housess = houserServiceImpl.selectAll(h);
+		System.out.println(housess);
 		if( null != housess) {
 			return housess;
 		}else {
